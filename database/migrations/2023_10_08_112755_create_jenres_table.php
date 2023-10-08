@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name', 20);
             $table->timestamps();
-            $tanle->softDeletes();
+            $table->softDeletes();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
