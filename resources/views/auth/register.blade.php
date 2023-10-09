@@ -39,6 +39,18 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- group_id -->
+        <div>
+            <x-input-label for="name" :value="__('所属グループ')" />
+            <select name="group_id">
+                <option value="">選択してください</option >
+                @foreach($groups as $group)
+                <option value="{{ $group->id }}">{{ $group->name }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('group_id')" class="mt-2" />
+        </div>
+        
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
