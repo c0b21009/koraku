@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->string('location', 20);
-            $table->string('eventcontent');
+            $table->string('event_content');
             $table->timestamps();
             $table->softDeletes();
         });
