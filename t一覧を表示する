@@ -1,0 +1,41 @@
+[33mcommit 92d6e8303ce45f9c2c1d20dcb70ec683ad3818bd[m[33m ([m[1;36mHEAD -> [m[1;32mpost[m[33m, [m[1;31morigin/migrations[m[33m, [m[1;32mmigrations[m[33m)[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Wed Oct 11 14:06:39 2023 +0900
+
+    create seeders
+
+[33mcommit 2c89289367744cb724017268265fa5c72b384dc2[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Wed Oct 11 10:44:35 2023 +0900
+
+    mifrate events
+
+[33mcommit 10092bd3899e043f8f558189dd171911c37dd88e[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Mon Oct 9 21:10:59 2023 +0900
+
+    migrate users
+
+[33mcommit 50e8295f3154fd04bce121ee10176eb2251dec92[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Sun Oct 8 20:42:22 2023 +0900
+
+    migrate jenre02
+
+[33mcommit 62e7f45ec4066b7f66b039be7ce1ca7dd56583c3[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Sun Oct 8 20:32:25 2023 +0900
+
+    migrate jenres
+
+[33mcommit ecdb89542cf0361468af89749da9c2adc97dcdb5[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Sun Oct 8 14:38:59 2023 +0900
+
+    migrate groups
+
+[33mcommit 6ec25480536f9c2cd693c0419f79e909bece771d[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m, [m[1;32mBreeze[m[33m)[m
+Author: c0b21009 <c0b210090c@edu.teu.ac.jp>
+Date:   Sun Oct 8 12:47:19 2023 +0900
+
+    create env
