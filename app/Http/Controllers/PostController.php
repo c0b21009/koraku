@@ -14,6 +14,7 @@ class PostController extends Controller
 {
     public function index(Event $event)
     {
-        return $event->get();
+        //投稿内容をデフォルトではなくgetByLimitで表示
+        return view('posts.index')->with(['events' => $event->getPaginateByLimit()]);
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace("_", '-', app()->getLocal()) }}"?>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"?>
     <head>
         <meta charset="utf-8">
         <title>original web application</title>
@@ -9,10 +9,15 @@
     <body>
         <h1>こらく!!!</h1>
         <div class='posts'>
+            @foreach ($events as $event)
             <div class='posts'>
-                <h2 class='title'>Title</h2>
-                <p class='body'>This is a sample body</p>
+                <h2 class='title'>{{ $event->title }}</h2>
+                <p class='body'>{{ $event->body  }}</p>
             </div>
+            @endforeach
+        </div>
+        <div class='paginate'>
+            {{ $events->links() }}
         </div>
     </body>
 </html>
