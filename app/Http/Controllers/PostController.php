@@ -21,4 +21,14 @@ class PostController extends Controller
     {
         return view('posts.show')->with(['event' => $event]);
     }
+    public function create()
+    {
+        return view('posts.create');
+    }
+    public function store(Request $request, Event $event)
+    {
+        $input = $request['event'];
+        $post->fill($input)->save();
+        return redirect('/posts/' .$event->id);
+    }
 }

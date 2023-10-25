@@ -13,4 +13,8 @@ class Event extends Model
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    protected $dates=[
+        'start_time',
+        'end_time'
+        ];
 }

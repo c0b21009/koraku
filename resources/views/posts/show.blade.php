@@ -14,7 +14,7 @@
         <div class="content">
             <div class="content__posts">
                 <h3>日時</h3>
-                <p>{{ $event->start_time }}~{{ $event->end_time }}</p>
+                <p>{{ $event->start_time->format('m/d H:i') }}~{{ $event->end_time->format('m/d H:i') }}</p>
                 <h3>場所</h3>
                 <p>{{ $event->location }}</p>
                 <h3>活動内容</h3>

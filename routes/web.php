@@ -17,10 +17,13 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
     return view('welcome');
 });
+//一覧画面
 Route::get('/posts', [PostController::class, 'index']);
-//{event=対象のid}
+//投稿作成画面
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store']);
+//{event=対象のid}詳細画面
 Route::get('/posts/{event}', [PostController::class, 'show']);
-//Route::get('/posts/{event}', ['App\Http\Comtrollers\PostController@show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
