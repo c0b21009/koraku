@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/posts', [PostController::class, 'index']);
+//{event=対象のid}
+Route::get('/posts/{event}', [PostController::class, 'show']);
+//Route::get('/posts/{event}', ['App\Http\Comtrollers\PostController@show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

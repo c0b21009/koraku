@@ -17,4 +17,8 @@ class PostController extends Controller
         //投稿内容をデフォルトではなくgetByLimitで表示
         return view('posts.index')->with(['events' => $event->getPaginateByLimit()]);
     }
+    public function show(Event $event)
+    {
+        return view('posts.show')->with(['event' => $event]);
+    }
 }

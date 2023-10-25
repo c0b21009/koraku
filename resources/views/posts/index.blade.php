@@ -8,15 +8,17 @@
     </head>
     <body>
         <h1>こらく!!!</h1>
-        <div class='posts'>
+        <div class="posts">
             @foreach ($events as $event)
-            <div class='posts'>
-                <h2 class='title'>{{ $event->title }}</h2>
-                <p class='body'>{{ $event->body  }}</p>
+            <div class="posts">
+                <h2 class="title">
+                    <a href="/posts/{{ $event->id }}">{{ $event->title }}</a>
+                </h2>
+                <p class="body">{{ $event->event_content  }}</p>
             </div>
             @endforeach
         </div>
-        <div class='paginate'>
+        <div class="paginate">
             {{ $events->links() }}
         </div>
     </body>
