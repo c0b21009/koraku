@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Jenre;
+use Illuminate\Support\Facades\Auth;
 /**
  * Post一覧を表示する
  * 
@@ -30,6 +31,12 @@ class PostController extends Controller
     public function store(Request $request, Event $event)
     {
         $input = $request['event'];
+        $userinfo = [
+        'user_id' => Auth::id(),
+        'group_id' => Auth::user()->group_id,
+        ];
+        $input = $input + $userinfo;
+        //dd($input);
         $event->fill($input)->save();
         return redirect('/posts/' .$event->id);
     }
