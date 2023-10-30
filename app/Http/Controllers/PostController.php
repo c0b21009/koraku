@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Jenre;
 /**
  * Post一覧を表示する
  * 
@@ -21,14 +22,15 @@ class PostController extends Controller
     {
         return view('posts.show')->with(['event' => $event]);
     }
-    public function create()
+    public function create(Jenre $jenre)
     {
-        return view('posts.create');
+        //ジャンル一覧
+        return view('posts.create')->with(['jenres' => $jenre->get()]);
     }
     public function store(Request $request, Event $event)
     {
         $input = $request['event'];
-        $post->fill($input)->save();
+        $event->fill($input)->save();
         return redirect('/posts/' .$event->id);
     }
 }
