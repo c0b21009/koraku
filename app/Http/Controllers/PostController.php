@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Jenre;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostRequest;
 /**
  * Post一覧を表示する
  * 
@@ -28,7 +29,8 @@ class PostController extends Controller
         //ジャンル一覧
         return view('posts.create')->with(['jenres' => $jenre->get()]);
     }
-    public function store(Request $request, Event $event)
+    
+    public function store(PostRequest $request, Event $event)
     {
         $input = $request['event'];
         $userinfo = [
@@ -39,5 +41,16 @@ class PostController extends Controller
         //dd($input);
         $event->fill($input)->save();
         return redirect('/posts/' .$event->id);
+    }
+    public function edit(Event $event, Jenre $jenre)
+    {
+        return view('posts.edit')->with(['event' => $event, 'jenres' => $jenre->get()]);
+    }
+    public function update(PostRequest $request, Event $event)
+    {
+        $input_post = $request['event'];
+        $event->fill($input_post)->save();
+        
+        return redirect('/posts/' . $event->id);
     }
 }

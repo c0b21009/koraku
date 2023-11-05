@@ -24,7 +24,9 @@ Route::get('/posts/create', [PostController::class, 'create']);
 Route::post('/posts', [PostController::class, 'store']);
 //{event=対象のid}詳細画面
 Route::get('/posts/{event}', [PostController::class, 'show']);
-
+//edit画面
+Route::get('/posts/{event}/edit', [PostCOntroller::class, 'edit']);
+Route::put('/posts/{event}', [PostController::class, 'update']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
