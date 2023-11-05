@@ -16,11 +16,25 @@
                     <a href="/posts/{{ $event->id }}">{{ $event->title }}</a>
                 </h2>
                 <p class="body">{{ $event->event_content  }}</p>
+                <form action="/posts/{{ $event->id }}" id="form_{{ $event->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" onclick="deletePost({{ $event->id }})">削除</button> 
+                </form>
             </div>
             @endforeach
         </div>
         <div class="paginate">
             {{ $events->links() }}
         </div>
+        <script>
+            function deletePost(id) {
+                'use strict'
+        
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
     </body>
 </html>

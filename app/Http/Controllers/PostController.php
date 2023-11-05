@@ -53,4 +53,9 @@ class PostController extends Controller
         
         return redirect('/posts/' . $event->id);
     }
+    public function delete(Event $event)
+    {
+        $event->delete();
+        return redirect('/posts');
+    }
 }
