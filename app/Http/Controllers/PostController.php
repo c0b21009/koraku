@@ -22,7 +22,7 @@ class PostController extends Controller
     }
     public function show(Event $event)
     {
-        return view('posts.show')->with(['event' => $event]);
+        return view('posts.show')->with(['event' => $event, 'jenre' => $jenre->get()]);
     }
     public function create(Jenre $jenre)
     {

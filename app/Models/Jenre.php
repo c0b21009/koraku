@@ -12,4 +12,8 @@ class Jenre extends Model
     {
         return $this->hasMany(Event::class);
     }
+    public function getByJenre(int $limit_count = 2)
+    {
+        return $this->events()->with('jenre')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }
