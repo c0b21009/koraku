@@ -10,6 +10,7 @@
         <h1>こらく!!!</h1>
         <div class="posts">
             <a href='/posts/create'>create</a>
+            <a href="/posts">戻る</a>
             @foreach ($events as $event)
             <div class="posts">
                 <h2 class="title">
