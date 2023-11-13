@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
-    public function events()
+    public function event()
     {
-        return $this->hasMany(Event::class);
+        return $this->belongsTo(Event::class);
     }
 }
