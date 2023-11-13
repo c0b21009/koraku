@@ -28,6 +28,7 @@ class Event extends Model
         'jenre_id',
         'group_id',
         'user_id',
+        'item_id',
         ];
     public function jenre()
     {
@@ -40,5 +41,9 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
     }
 }
