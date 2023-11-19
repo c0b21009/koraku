@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Jenre;
 use App\Models\Item;
+use App\Models\Time;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 /**
@@ -35,18 +36,31 @@ class PostController extends Controller
     {
         $input = $request['event'];
         $userinfo = [
-        'user_id' => Auth::id(),
-        'group_id' => Auth::user()->group_id,
+            'user_id' => Auth::id(),
+            'group_id' => Auth::user()->group_id,
         ];
         $input = $input + $userinfo;
-        //dd($input);
-        $event->fill($input)->save();
-        $newEvent = $event->create($input);
-
-        foreach($request->items as $name) {
-            $newEvent->items()->create(['name' => $name]);
+    
+        $event->fill($input)->save(); // ここで既存の $event を更新しています
+        if ($request->items !== null){
+            foreach ($request->items as $name) {
+                if ($name !== null && $name !== '') {
+                    $event->items()->create(['name' => $name]);
+                }
+            }
         }
-        return redirect('/posts/' .$event->id);
+        if (isset($validatedData['datetimes'])) {
+            $validatedData = $request->validate([
+                'datetimes.*' => 'required|date',
+                'schedules.*' => 'required|string',
+            ]);
+            
+            foreach ($validatedData['datetimes'] as $key => $datetime) {
+                $event->times()->create(['datetime' => $datetime, 'schedule' => $validatedData['schedules'][$key]]);
+            }
+        }
+        
+        return redirect('/posts/' . $event->id);
     }
     public function edit(Event $event, Jenre $jenre)
     {

@@ -46,4 +46,8 @@ class Event extends Model
     {
         return $this->hasMany(Item::class);
     }
+    public function times()
+    {
+        return $this->hasMany(Time::class);
+    }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Time extends Model
 {
     use HasFactory;
-    protected $fillable = ['time', 'content'];
+    protected $fillable = ['datetime', 'schedule'];
     public function event()
     {
         return $this->belongsTo(Event::class);
