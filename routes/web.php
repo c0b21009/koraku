@@ -24,6 +24,7 @@ Route::get('/posts', [PostController::class, 'index']);
 //投稿作成画面
 Route::get('/posts/create', [PostController::class, 'create']);
 Route::post('/posts', [PostController::class, 'store']);
+Route::post('/items', [PostController::class, 'store_items']);
 //{event=対象のid}詳細画面
 Route::get('/posts/{event}', [PostController::class, 'show']);
 //edit画面
@@ -35,13 +36,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 //ジャンル別
 Route::get('/jenres/{jenre}', [JenreController::class, 'index']);
-
-//入力フォームページ
-Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-//確認フォームページ
-Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-//送信完了ページ
-Route::post('/contact/thanks', [ContactController::class, 'send'])->name('contact.send');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

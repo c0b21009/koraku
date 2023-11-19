@@ -41,10 +41,46 @@
                 <textarea name="event[event_content]" placeholder="○○の季節になりました！~~をしませんか？"></textarea>
                 <p class="event_content__error" style="color:red">{{ $errors->first('event.event_content')}}</p>
             </div>
+            <div id="app">
+                <h2>持ち物</h2>
+            <div id="input_fields">
+                <!-- 最初の入力フィールド -->
+                <div>
+                    <input type="text" name="items[]" value="">
+                    <button type="button" class="btn btn-danger remove_field">削除</button>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success add_field">追加</button>
+            <br>
             <input type="submit" value="投稿"/>
         </form>
+            
+            
         <div class="footer">
             <a href="/posts">戻る</a>
         </div>
+        <!-- 確認用 -->
+                <hr>
+                <label>textsの中身</label>
+                <div v-text="texts"></div>
+                <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+        <!--Vueの定義-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // 追加ボタンがクリックされた時の処理
+                $(".add_field").click(function() {
+                    $("#input_fields").append('<div><input type="text" name="items[]" value=""><button type="button" class="btn btn-danger remove_field">削除</button></div>');
+                });
+        
+                // 削除ボタンがクリックされた時の処理
+                $("#input_fields").on("click", ".remove_field", function() {
+                    $(this).parent('div').remove();
+                });
+            });
+        </script>
+
     </body>
 </html>

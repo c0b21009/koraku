@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Jenre;
+use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 /**
@@ -40,19 +41,26 @@ class PostController extends Controller
         $input = $input + $userinfo;
         //dd($input);
         $event->fill($input)->save();
+        $newEvent = $event->create($input);
+
+        foreach($request->items as $name) {
+            $newEvent->items()->create(['name' => $name]);
+        }
         return redirect('/posts/' .$event->id);
     }
     public function edit(Event $event, Jenre $jenre)
     {
         return view('posts.edit')->with(['event' => $event, 'jenres' => $jenre->get()]);
     }
-    public function update(PostRequest $request, Event $event)
+    public function update(PostRequest $request, Event $event, Item $item)
     {
         $input_post = $request['event'];
         $event->fill($input_post)->save();
         
+        
         return redirect('/posts/' . $event->id);
     }
+    
     public function delete(Event $event)
     {
         $event->delete();
