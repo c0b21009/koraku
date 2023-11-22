@@ -24,6 +24,7 @@
         </div>
         
         <div class="footer">
+            <div class="edit"><a href="/posts/{{ $event->id }}/edit">編集</a></div>
            <a href="/posts">戻る</a>
         </div>
     </body>

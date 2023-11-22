@@ -10,16 +10,20 @@
             @csrf
             <div class="title">
                 <h2>Title</h2>
+
                 <input type="text" name="post[title]" placeholder="タイトル" value="{{ old('event.title') }}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('event.title') }}</p>
+
             </div>
             
             <div class="time">
                 <h2>日時</h2>
                 開始:<input type="datetime-local" name="event[start_time]"/>
                 終了:<input type="datetime-local" name="event[end_time]"/>
+
                 <p class="title__error" style="color:red">{{ $errors->first('event.start_time') }}</p>
                 <p class="title__error" style="color:red">{{ $errors->first('event.end_time') }}</p>
+
             </div>
             
             <div class="location">
@@ -27,6 +31,7 @@
                 <input type="text" name="event[location]" placeholder="○○公園"/>
                 <p class="title__error" style="color:red">{{ $errors->first('event.location') }}</p>
             </div>
+            
             <div>
                 <!-- ジャンルプルダウン -->
                 <select name="event[jenre_id]">
@@ -34,13 +39,16 @@
                     @foreach($jenres as $jenre)
                     <option value="{{ $jenre->id }}">{{ $jenre->name }}</option>
                     @endforeach
+
                     <p class="title__error" style="color:red">{{ $errors->first('event.jebre_id') }}</p>
+
                 </select>
                 <x-input-error :messages="$errors->get('jenre_id')" class="mt-2" />
             </div>
             <div class="event_content">
                 <h2>活動内容</h2>
                 <textarea name="event[event_content]" placeholder="○○の季節になりました！~~をしませんか？"></textarea>
+                <p class="event_content__error" style="color:red">{{ $errors->first('event.event_content')}}</p>
             </div>
             <input type="submit" value="投稿"/>
         </form>
