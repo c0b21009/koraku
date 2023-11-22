@@ -48,7 +48,7 @@
             </div>
             
             <div id="app_items">
-                <h2>持ち物</h2>
+                <h2>持ち物(任意)</h2>
                 <div id="input_fields_items">
                     <!--入力 -->
                     <div>
@@ -61,7 +61,7 @@
             </div>
             
             <div id="app_times">
-                <h2>日時と予定</h2>
+                <h2>日時と予定(任意)</h2>
                 <div id="input_fields_times">
                     <!--入力 -->
                     <div>

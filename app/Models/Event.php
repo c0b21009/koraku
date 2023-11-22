@@ -48,6 +48,6 @@ class Event extends Model
     }
     public function times()
     {
-        return $this->hasMany(Time::class);
+        return $this->hasMany(Time::class)->orderBy('datetime', 'asc');
     }
 }

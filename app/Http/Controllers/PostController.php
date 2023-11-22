@@ -22,9 +22,9 @@ class PostController extends Controller
         //投稿内容をデフォルトではなくgetByLimitで表示
         return view('posts.index')->with(['events' => $event->getPaginateByLimit()]);
     }
-    public function show(Event $event, Jenre $jenre)
+    public function show(Event $event)
     {
-        return view('posts.show')->with(['event' => $event, 'jenre' => $jenre->get()]);
+        return view('posts.show')->with(['event' => $event]);
     }
     public function create(Jenre $jenre)
     {
@@ -49,16 +49,20 @@ class PostController extends Controller
                 }
             }
         }
+        $validatedData = $request->validate([
+            'datetimes.*' => 'required|date',
+            'schedules.*' => 'required|string',
+        ]);
+        
         if (isset($validatedData['datetimes'])) {
-            $validatedData = $request->validate([
-                'datetimes.*' => 'required|date',
-                'schedules.*' => 'required|string',
-            ]);
-            
             foreach ($validatedData['datetimes'] as $key => $datetime) {
-                $event->times()->create(['datetime' => $datetime, 'schedule' => $validatedData['schedules'][$key]]);
+                $event->times()->create([
+                    'datetime' => $datetime,
+                    'schedule' => $validatedData['schedules'][$key], // 各時間に関連付けたいスケジュールを指定
+                ]);
             }
         }
+
         
         return redirect('/posts/' . $event->id);
     }
@@ -66,12 +70,41 @@ class PostController extends Controller
     {
         return view('posts.edit')->with(['event' => $event, 'jenres' => $jenre->get()]);
     }
-    public function update(PostRequest $request, Event $event, Item $item)
+    public function update(PostRequest $request, Event $event)
     {
-        $input_post = $request['event'];
-        $event->fill($input_post)->save();
-        
-        
+        $input = $request->validated();
+        $userinfo = [
+            'user_id' => Auth::id(),
+            'group_id' => Auth::user()->group_id,
+        ];
+        $input = $input + $userinfo;
+    
+        $event->fill($input)->save(); // 既存の $event を更新
+    
+        if ($request->has('items')) {
+            $event->items()->delete(); // 現在のアイテムを全て削除
+            foreach ($request->items as $name) {
+                if ($name !== null && $name !== '') {
+                    $event->items()->create(['name' => $name]); // 新しいアイテムを作成
+                }
+            }
+        }
+    
+        $validatedData = $request->validate([
+            'datetimes.*' => 'required|date',
+            'schedules.*' => 'required|string',
+        ]);
+    
+        if ($request->has('datetimes') && $request->has('schedules')) {
+            $event->times()->delete(); // 現在の時間を全て削除
+            foreach ($validatedData['datetimes'] as $key => $datetime) {
+                $event->times()->create([
+                    'datetime' => $datetime,
+                    'schedule' => $validatedData['schedules'][$key],
+                ]);
+            }
+        }
+    
         return redirect('/posts/' . $event->id);
     }
     
