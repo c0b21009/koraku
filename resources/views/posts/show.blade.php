@@ -24,7 +24,10 @@
         </div>
         
         <div class="footer">
-            <div class="edit"><a href="/posts/{{ $event->id }}/edit">編集</a></div>
+            @if(Auth::user()->group_id === $event->group_id)
+                <div class="edit"><a href="/posts/{{ $event->id }}/edit">編集</a></div>
+            @else
+            @endif
            <a href="/posts">戻る</a>
         </div>
     </body>

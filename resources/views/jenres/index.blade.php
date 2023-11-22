@@ -10,6 +10,7 @@
         <h1>こらく!!!</h1>
         <div class="posts">
             <a href='/posts/create'>create</a>
+            <a href="/posts">戻る</a>
             @foreach ($events as $event)
             <div class="posts">
                 <h2 class="title">
@@ -17,15 +18,11 @@
                     <a href="/jenres/{{ $event->jenre->id }}">{{ $event->jenre->name }}</a>
                 </h2>
                 <p class="body">{{ $event->event_content  }}</p>
-                @if(Auth::user()->group_id === $event->group_id)
                 <form action="/posts/{{ $event->id }}" id="form_{{ $event->id }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="button" onclick="deletePost({{ $event->id }})">削除</button> 
                 </form>
-                @else
-                @endif
-                
             </div>
             @endforeach
         </div>

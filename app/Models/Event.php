@@ -11,7 +11,7 @@ class Event extends Model
     use HasFactory;
     use SoftDeletes;
     //データ取得の制限
-    public function getpaginateByLimit(int $limit_count = 1)
+    public function getpaginateByLimit(int $limit_count = 3)
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
@@ -28,6 +28,7 @@ class Event extends Model
         'jenre_id',
         'group_id',
         'user_id',
+        'item_id',
         ];
     public function jenre()
     {
@@ -40,5 +41,9 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 }
