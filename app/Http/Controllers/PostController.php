@@ -7,7 +7,9 @@ use App\Models\Event;
 use App\Models\Jenre;
 use App\Models\Item;
 use App\Models\Time;
+//ログイン中のuser_idを取得するため
 use Illuminate\Support\Facades\Auth;
+//バリデーションのため
 use App\Http\Requests\PostRequest;
 /**
  * Post一覧を表示する
@@ -31,7 +33,7 @@ class PostController extends Controller
         //ジャンル一覧
         return view('posts.create')->with(['jenres' => $jenre->get()]);
     }
-    
+
     public function store(PostRequest $request, Event $event)
     {
         $input = $request['event'];
