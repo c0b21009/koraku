@@ -27,6 +27,7 @@ Route::get('/posts/{event}', [PostController::class, 'show']);
 //edit画面
 Route::get('/posts/{event}/edit', [PostCOntroller::class, 'edit']);
 Route::put('/posts/{event}', [PostController::class, 'update']);
+Route::delete('/posts/{event}', [PostController::class, 'delete']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
